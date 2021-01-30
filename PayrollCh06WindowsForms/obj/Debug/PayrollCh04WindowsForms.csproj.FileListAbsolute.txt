@@ -1,0 +1,10 @@
+C:\Users\jpscott\Desktop\Payroll\PayrollCh04WindowsForms\bin\Debug\PayrollCh03WindowsForms.exe.config
+C:\Users\jpscott\Desktop\Payroll\PayrollCh04WindowsForms\bin\Debug\PayrollCh03WindowsForms.exe
+C:\Users\jpscott\Desktop\Payroll\PayrollCh04WindowsForms\bin\Debug\PayrollCh03WindowsForms.pdb
+C:\Users\jpscott\Desktop\Payroll\PayrollCh04WindowsForms\obj\Debug\PayrollCh04WindowsForms.csprojAssemblyReference.cache
+C:\Users\jpscott\Desktop\Payroll\PayrollCh04WindowsForms\obj\Debug\PayrollCh03WindowsForms.FormPayrollChapter04.resources
+C:\Users\jpscott\Desktop\Payroll\PayrollCh04WindowsForms\obj\Debug\PayrollCh03WindowsForms.Properties.Resources.resources
+C:\Users\jpscott\Desktop\Payroll\PayrollCh04WindowsForms\obj\Debug\PayrollCh04WindowsForms.csproj.GenerateResource.cache
+C:\Users\jpscott\Desktop\Payroll\PayrollCh04WindowsForms\obj\Debug\PayrollCh04WindowsForms.csproj.CoreCompileInputs.cache
+C:\Users\jpscott\Desktop\Payroll\PayrollCh04WindowsForms\obj\Debug\PayrollCh03WindowsForms.exe
+C:\Users\jpscott\Desktop\Payroll\PayrollCh04WindowsForms\obj\Debug\PayrollCh03WindowsForms.pdb
