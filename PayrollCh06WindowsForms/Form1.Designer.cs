@@ -48,6 +48,12 @@ namespace PayrollCh03WindowsForms
             this.textBoxTotalGrossPay = new System.Windows.Forms.TextBox();
             this.labelTotalGrossPay = new System.Windows.Forms.Label();
             this.buttonClearAll = new System.Windows.Forms.Button();
+            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.calculateMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.clearMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.clearAllMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.exitMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // labelTitle
@@ -192,9 +198,11 @@ namespace PayrollCh03WindowsForms
             // 
             // textBoxTotalNumberOfEmployees
             // 
+            this.textBoxTotalNumberOfEmployees.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
             this.textBoxTotalNumberOfEmployees.Font = new System.Drawing.Font("Arial Narrow", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBoxTotalNumberOfEmployees.Location = new System.Drawing.Point(670, 182);
             this.textBoxTotalNumberOfEmployees.Name = "textBoxTotalNumberOfEmployees";
+            this.textBoxTotalNumberOfEmployees.ReadOnly = true;
             this.textBoxTotalNumberOfEmployees.Size = new System.Drawing.Size(214, 32);
             this.textBoxTotalNumberOfEmployees.TabIndex = 14;
             this.textBoxTotalNumberOfEmployees.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -242,6 +250,47 @@ namespace PayrollCh03WindowsForms
             this.buttonClearAll.UseVisualStyleBackColor = true;
             this.buttonClearAll.Click += new System.EventHandler(this.buttonClearAll_Click);
             // 
+            // menuStrip1
+            // 
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.calculateMenuItem,
+            this.clearMenuItem,
+            this.clearAllMenuItem,
+            this.exitMenuItem});
+            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.Size = new System.Drawing.Size(922, 24);
+            this.menuStrip1.TabIndex = 19;
+            this.menuStrip1.Text = "menuStrip1";
+            // 
+            // calculateMenuItem
+            // 
+            this.calculateMenuItem.Name = "calculateMenuItem";
+            this.calculateMenuItem.Size = new System.Drawing.Size(68, 20);
+            this.calculateMenuItem.Text = "Calculate";
+            this.calculateMenuItem.Click += new System.EventHandler(this.calculateMenuItem_Click);
+            // 
+            // clearMenuItem
+            // 
+            this.clearMenuItem.Name = "clearMenuItem";
+            this.clearMenuItem.Size = new System.Drawing.Size(46, 20);
+            this.clearMenuItem.Text = "Clear";
+            this.clearMenuItem.Click += new System.EventHandler(this.clearMenuItem_Click);
+            // 
+            // clearAllMenuItem
+            // 
+            this.clearAllMenuItem.Name = "clearAllMenuItem";
+            this.clearAllMenuItem.Size = new System.Drawing.Size(60, 20);
+            this.clearAllMenuItem.Text = "ClearAll";
+            this.clearAllMenuItem.Click += new System.EventHandler(this.clearAllMenuItem_Click);
+            // 
+            // exitMenuItem
+            // 
+            this.exitMenuItem.Name = "exitMenuItem";
+            this.exitMenuItem.Size = new System.Drawing.Size(38, 20);
+            this.exitMenuItem.Text = "Exit";
+            this.exitMenuItem.Click += new System.EventHandler(this.exitMenuItem_Click);
+            // 
             // FormPayrollChapter06
             // 
             this.AcceptButton = this.buttonCalculate;
@@ -269,9 +318,13 @@ namespace PayrollCh03WindowsForms
             this.Controls.Add(this.labelLastName);
             this.Controls.Add(this.labelFirstName);
             this.Controls.Add(this.labelTitle);
+            this.Controls.Add(this.menuStrip1);
+            this.MainMenuStrip = this.menuStrip1;
             this.Name = "FormPayrollChapter06";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Chapter 05 Windows Forms Payroll Application";
+            this.menuStrip1.ResumeLayout(false);
+            this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -298,6 +351,11 @@ namespace PayrollCh03WindowsForms
         private System.Windows.Forms.TextBox textBoxTotalGrossPay;
         private System.Windows.Forms.Label labelTotalGrossPay;
         private System.Windows.Forms.Button buttonClearAll;
+        private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem calculateMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem clearMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem clearAllMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem exitMenuItem;
     }
 }
 

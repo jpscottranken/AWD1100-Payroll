@@ -13,6 +13,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PayrollCh05WindowsForms", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PayrollCh06WindowsForms", "PayrollCh06WindowsForms\PayrollCh06WindowsForms.csproj", "{6F147875-7A85-4796-B001-16C2D989FD44}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PayrollCh06Console", "PayrollCh06Console\PayrollCh06Console.csproj", "{C85E2AAA-4B13-4905-8A62-7F26F68BEF75}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PayrollCh07WindowsForms", "PayrollCh07WindowsForms\PayrollCh07WindowsForms.csproj", "{ED0AC378-F093-4006-AD49-45550B885151}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +43,14 @@ Global
 		{6F147875-7A85-4796-B001-16C2D989FD44}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6F147875-7A85-4796-B001-16C2D989FD44}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6F147875-7A85-4796-B001-16C2D989FD44}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C85E2AAA-4B13-4905-8A62-7F26F68BEF75}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C85E2AAA-4B13-4905-8A62-7F26F68BEF75}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C85E2AAA-4B13-4905-8A62-7F26F68BEF75}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C85E2AAA-4B13-4905-8A62-7F26F68BEF75}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ED0AC378-F093-4006-AD49-45550B885151}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ED0AC378-F093-4006-AD49-45550B885151}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ED0AC378-F093-4006-AD49-45550B885151}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ED0AC378-F093-4006-AD49-45550B885151}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

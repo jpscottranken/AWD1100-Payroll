@@ -39,25 +39,52 @@ namespace PayrollCh03WindowsForms
         //  answer in the formatted gross pay textBox.
         private void buttonCalculate_Click(object sender, EventArgs e)
         {
+            calculate();
+        }
+
+        private void calculate()
+        {
             //  Declare and initialize program variables
             decimal hoursWorked = 0.0m;     //  Hours worked
             decimal hourlyRate  = 0.0m;     //  Hourly rate
-            decimal  grossPay   = 0.0m;     //  Gross pay hoursWorked * hourlyRate
-            string   empInfo    = "";       //  All employee info concatenated
-            bool    keepGoing   = true;     //  Program continue flag
+            decimal grossPay    = 0.0m;     //  Gross pay hoursWorked * hourlyRate
+            bool keepGoing      = true;     //  Program continue flag
+            string defName      = "Unknown";//  Default name
 
-            if (keepGoing)
+            if (keepGoing)      //  Should always be true (see line above).
             {
-                //  Verify the whatever was entered into the
-                //  hoursWorked textBox was indded numeric.
-                keepGoing = validateIsNumeric(textBoxHoursWorked.Text);
+                keepGoing = validateFirstName();
             }
-            else
+            else                //  Should never be hit.
             {
                 return;
             }
 
-            if (keepGoing)
+            if (!keepGoing)     //  Means validateFirstName() returned false
+            {
+                //  There was nothing entered in the textBoxFirstName
+                //  field.  So, put in the default name of UFN, which
+                //  stands for Unknown First Name.
+                textBoxFirstName.Text = defName;
+                keepGoing = true;
+            }
+ 
+            keepGoing = validateLastName();
+
+            if (!keepGoing)     //  Means validateLastName() returned false
+            {
+                //  There was nothing entered in the textBoxLastName
+                //  field.  So, put in the default name of ULN, which
+                //  stands for Unknown Last Name.
+                textBoxLastName.Text = defName;
+                keepGoing = true;
+            }
+
+            //  Verify the whatever was entered into the
+            //  hoursWorked textBox was indded numeric.
+            keepGoing = validateIsNumeric(textBoxHoursWorked.Text);
+
+            if (keepGoing)     //  Means validateIsNumeric() returned true
             {
                 //  We know that the hoursWorked textBox has
                 //  a value in it that indeed is numeric.
@@ -67,7 +94,7 @@ namespace PayrollCh03WindowsForms
                 //  Validate that entry within range (>= 0 and <= 84).
                 keepGoing = validateHoursWorkedRange(hoursWorked);
             }
-            else
+            else               //  Means validateIsNumeric() returned false
             {
                 //  We know that the hoursWorked textBox holds
                 //  either no value at all or a non-numeric value.
@@ -81,7 +108,7 @@ namespace PayrollCh03WindowsForms
                 return;
             }
 
-            if (keepGoing)
+            if (keepGoing)     //  Means validateHoursWorkedRange() returned true
             {
                 //  We know we have an hoursWorked value inputted
                 //  that was between 0 and 84 (MINHOURS and MAXHOURS).
@@ -89,7 +116,7 @@ namespace PayrollCh03WindowsForms
                 //  Now attempt to validate contents of hourlyRate textBox
                 keepGoing = validateIsNumeric(textBoxHourlyRate.Text);
             }
-            else
+            else               //  Means validateHoursWorkedRange() returned false
             {
                 //  We know that the hoursWorked textBox holds
                 //  a value that is out of range, either < 0 or.
@@ -103,7 +130,7 @@ namespace PayrollCh03WindowsForms
                 return;
             }
 
-            if (keepGoing)
+            if (keepGoing)     //  Means validateIsNumeric() returned true
             {
                 //  We know that the hourlyRate textBox has
                 //  a value in it that indeed is numeric.
@@ -113,7 +140,7 @@ namespace PayrollCh03WindowsForms
                 //  Validate that entry within range (>= 0 and <= 99.99).
                 keepGoing = validateHourlyRateRange(hourlyRate);
             }
-            else
+            else               //  Means validateIsNumeric() returned false
             {
                 //  We know that the hourlyRate textBox holds
                 //  a value that is either empty or non-numeric.
@@ -127,7 +154,7 @@ namespace PayrollCh03WindowsForms
                 return;
             }
 
-            if (keepGoing)
+            if (keepGoing)     //  Means validateHourlyRateRange() returned true
             {
                 //  We know we have an hoursWorked value inputted
                 //  that was between 0 and 84 (MINHOURS and MAXHOURS).
@@ -135,31 +162,12 @@ namespace PayrollCh03WindowsForms
                 //  inputted that was between 0 and 99.99 (MINRATE
                 //  and MAXRATE).  We have a valid employee.
                 //
-                //  So, increment total employees counter
-                ++totEmployees;
-                textBoxTotalNumberOfEmployees.Text = totEmployees.ToString();
-                grossPay = calculateGrossPay(hoursWorked, hourlyRate);
-                //  Add current gross pay to the total gross pay accumulator
-                totGrossPay += grossPay;
 
-                textBoxTotalGrossPay.Text = totGrossPay.ToString("c");
+                updateValidEmployeeTotals(hoursWorked, hourlyRate, out grossPay);
 
-                //  Put gross pay into its formatted textBox
-                textBoxGrossPay.Text = grossPay.ToString("c");
-
-                //  Build string empInfo which will print out all of
-                //  the individual's employee information in a MessageBox.
-                empInfo += "Employee Name:  " + textBoxFirstName.Text.ToString() + " " +
-                                                textBoxLastName.Text.ToString();
-                empInfo += "\nEmployee Hours: " + hoursWorked.ToString("f2");
-                empInfo += "\nEmployee Rate:  " + hourlyRate.ToString("c");
-                empInfo += "\nEmp Gross Pay:  " + grossPay.ToString("c");
-
-                MessageBox.Show(empInfo, "EMPLOYEE STATISTICS",
-                                MessageBoxButtons.OK,
-                                MessageBoxIcon.Information);
+                buildValidEmployeeMessageBox(hoursWorked, hourlyRate, grossPay);
             }
-            else
+            else               //  Means validateHourlyRateRange() returned false
             {
                 //  hourlyRate inputted was out of range, i.e. either
                 //  it was < 0 or > 99.99.  So, print out an associated
@@ -171,6 +179,32 @@ namespace PayrollCh03WindowsForms
                 textBoxHourlyRate.Focus();
                 return;
             }
+        }
+
+        //  This routine validates that there is a value
+        //  in the first name field.  It returns true
+        //  if there is a value and false if there is not.
+        private bool validateFirstName()
+        {
+            if (textBoxFirstName.Text.Trim() == "")
+            {
+                return false;
+            }
+
+            return true;        //  Valid first name
+        }
+
+        //  This routine validates that there is a value
+        //  in the last name field.  It returns true
+        //  if there is a value and false if there is not.
+        private bool validateLastName()
+        {
+            if (textBoxLastName.Text.Trim() == "")
+            {
+                return false;
+            }
+
+            return true;        //  Valid last name
         }
 
         //  This method returns true if the input was
@@ -195,7 +229,6 @@ namespace PayrollCh03WindowsForms
             return true;
         }
 
-
         //  This routine attempt to validate whether the
         //  hoursRate was valid or not, i.e. is between
         //  0 and 99.99 (MINRATE and MAXRATE).
@@ -208,6 +241,41 @@ namespace PayrollCh03WindowsForms
 
             return true;
         }
+
+        private void updateValidEmployeeTotals(decimal hoursWorked,
+                                    decimal hourlyRate, out decimal grossPay)
+        {
+            //  So, increment total employees counter
+            ++totEmployees;
+            textBoxTotalNumberOfEmployees.Text = totEmployees.ToString();
+            grossPay = calculateGrossPay(hoursWorked, hourlyRate);
+            //  Add current gross pay to the total gross pay accumulator
+            totGrossPay += grossPay;
+
+            textBoxTotalGrossPay.Text = totGrossPay.ToString("c");
+
+            //  Put gross pay into its formatted textBox
+            textBoxGrossPay.Text = grossPay.ToString("c");
+        }
+
+        private void buildValidEmployeeMessageBox(decimal hoursWorked,
+                            decimal hourlyRate, decimal grossPay)
+        {
+            string empInfo = "";       //  All employee info concatenated
+
+            //  Build string empInfo which will print out all of
+            //  the individual's employee information in a MessageBox.
+            empInfo += "Employee Name:  " + textBoxFirstName.Text.ToString() + " " +
+                                            textBoxLastName.Text.ToString();
+            empInfo += "\nEmployee Hours: " + hoursWorked.ToString("f2");
+            empInfo += "\nEmployee Rate:  " + hourlyRate.ToString("c");
+            empInfo += "\nEmp Gross Pay:  " + grossPay.ToString("c");
+
+            MessageBox.Show(empInfo, "EMPLOYEE STATISTICS",
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Information);
+        }
+
 
         //  This method actually calculates the employee's
         //  gross pay.  It does take into account whether
@@ -245,20 +313,15 @@ namespace PayrollCh03WindowsForms
             clearOutIndividualEmployeeInfo();
         }
 
-        private void clearOutIndividualEmployeeInfo()
-        {
-            textBoxFirstName.Text = "";
-            textBoxLastName.Text = "";
-            textBoxHoursWorked.Text = "";
-            textBoxHourlyRate.Text = "";
-            textBoxGrossPay.Text = "";
-            textBoxFirstName.Focus();
-        }
-
         //  This method is called when the Eixt button
         //  is clicked.  It allows the user to end the
         //  program if s/he so desires.
         private void buttonExit_Click(object sender, EventArgs e)
+        {
+            exitProgramNowOrNot();
+        }
+
+        private void exitProgramNowOrNot()
         {
             DialogResult dialog = MessageBox.Show(
                 "Do You Really Want To Exit The Program?",
@@ -285,6 +348,16 @@ namespace PayrollCh03WindowsForms
             clearOutFinalTotals();
         }
 
+        private void clearOutIndividualEmployeeInfo()
+        {
+            textBoxFirstName.Text = "";
+            textBoxLastName.Text = "";
+            textBoxHoursWorked.Text = "";
+            textBoxHourlyRate.Text = "";
+            textBoxGrossPay.Text = "";
+            textBoxFirstName.Focus();
+        }
+
         private void clearOutFinalTotals()
         {
             textBoxTotalGrossPay.Text           = "";
@@ -302,5 +375,25 @@ namespace PayrollCh03WindowsForms
                             MessageBoxIcon.Error);
         }
 
+        private void calculateMenuItem_Click(object sender, EventArgs e)
+        {
+            calculate();
+        }
+
+        private void clearMenuItem_Click(object sender, EventArgs e)
+        {
+            clearOutIndividualEmployeeInfo();
+        }
+
+        private void clearAllMenuItem_Click(object sender, EventArgs e)
+        {
+            clearOutIndividualEmployeeInfo();
+            clearOutFinalTotals();
+        }
+
+        private void exitMenuItem_Click(object sender, EventArgs e)
+        {
+            exitProgramNowOrNot();
+        }
     }
 }

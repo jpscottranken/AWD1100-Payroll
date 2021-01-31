@@ -192,9 +192,11 @@ namespace PayrollCh03WindowsForms
             // 
             // textBoxTotalNumberOfEmployees
             // 
+            this.textBoxTotalNumberOfEmployees.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
             this.textBoxTotalNumberOfEmployees.Font = new System.Drawing.Font("Arial Narrow", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBoxTotalNumberOfEmployees.Location = new System.Drawing.Point(670, 182);
             this.textBoxTotalNumberOfEmployees.Name = "textBoxTotalNumberOfEmployees";
+            this.textBoxTotalNumberOfEmployees.ReadOnly = true;
             this.textBoxTotalNumberOfEmployees.Size = new System.Drawing.Size(214, 32);
             this.textBoxTotalNumberOfEmployees.TabIndex = 14;
             this.textBoxTotalNumberOfEmployees.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
