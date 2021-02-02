@@ -38,6 +38,9 @@ namespace PayrollCh03WindowsForms
         //  Declare and initialize global variables
         decimal totGrossPay     = 0.0m;         //  Total gross pay all employees
         int totEmployees        = 0;            //  Total number of employees
+        decimal minGrossPay     = 10000000.0m;  //  Smallest calculated gross pay
+        decimal maxGrossPay     = -1000000m;    //  Largest  calculated gross pay
+        decimal avgGrossPay     = 0.0m;         //  Average  calculated gross pay
 
         //  This method is run when the Calculate button
         //  is clicked.  It grabs the values from the
@@ -53,9 +56,9 @@ namespace PayrollCh03WindowsForms
         private void calculate()
         {
             //  Declare and initialize program variables
-            decimal hoursWorked = 0.0m;         //  Hours worked
-            decimal hourlyRate = 0.0m;          //  Hourly rate
-            decimal grossPay = 0.0m;            //  Gross pay hoursWorked * hourlyRate
+            decimal hoursWorked = 0.0m;             //  Hours worked
+            decimal hourlyRate = 0.0m;              //  Hourly rate
+            decimal grossPay = 0.0m;                //  Gross pay hoursWorked * hourlyRate
 
             //  Here calculate puts each of the methods we are
             //  attempting to call in a try/catch block.  If
@@ -69,8 +72,15 @@ namespace PayrollCh03WindowsForms
                 validateHourlyRate();
                 hoursWorked = Convert.ToDecimal(textBoxHoursWorked.Text);
                 hourlyRate  = Convert.ToDecimal(textBoxHourlyRate.Text);
+                ++totEmployees;
                 grossPay    = calculateGrossPay(hoursWorked, hourlyRate);
+                calculateMinimumGross(grossPay);
+                calculateMaximumGross(grossPay);
+                calculateAverageGross();
                 textBoxGrossPay.Text = grossPay.ToString("c");
+                textBoxMinGrossPay.Text = minGrossPay.ToString("c");
+                textBoxMaxGrossPay.Text = maxGrossPay.ToString("c");
+                textBoxAvgGrossPay.Text = avgGrossPay.ToString("c");
                 updateValidEmployeeTotals(hoursWorked, hourlyRate, grossPay);
                 buildValidEmployeeMessageBox(hoursWorked, hourlyRate, grossPay);
             }
@@ -193,12 +203,8 @@ namespace PayrollCh03WindowsForms
         private void updateValidEmployeeTotals(decimal hoursWorked,
                                     decimal hourlyRate, decimal grossPay)
         {
-            //  So, increment total employees counter
-            ++totEmployees;
             textBoxTotalNumberOfEmployees.Text = totEmployees.ToString();
             grossPay = calculateGrossPay(hoursWorked, hourlyRate);
-            //  Add current gross pay to the total gross pay accumulator
-            totGrossPay += grossPay;
 
             textBoxTotalGrossPay.Text = totGrossPay.ToString("c");
 
@@ -221,10 +227,13 @@ namespace PayrollCh03WindowsForms
             empInfo += "\nEmployee Hours: " + hoursWorked.ToString("f2");
             empInfo += "\nEmployee Rate:  " + hourlyRate.ToString("c");
             empInfo += "\nEmp Gross Pay:  " + grossPay.ToString("c");
+            empInfo += "\nMin Gross Pay:  " + minGrossPay.ToString("c");
+            empInfo += "\nMax Gross Pay:  " + maxGrossPay.ToString("c");
+            empInfo += "\nAvg Gross Pay:  " + avgGrossPay.ToString("c");
 
-            MessageBox.Show(empInfo, "EMPLOYEE STATISTICS",
-                            MessageBoxButtons.OK,
-                            MessageBoxIcon.Information);
+            //MessageBox.Show(empInfo, "EMPLOYEE STATISTICS",
+            //                MessageBoxButtons.OK,
+            //                MessageBoxIcon.Information);
         }
 
 
@@ -252,6 +261,9 @@ namespace PayrollCh03WindowsForms
                  */
                 gross = ((MAXNONOT * hr) + ((hw - MAXNONOT) * hr * OTRATE));
             }
+
+            //  Add current gross pay to the total gross pay accumulator
+            totGrossPay += gross;
 
             return gross;
         }
@@ -345,6 +357,32 @@ namespace PayrollCh03WindowsForms
         private void exitMenuItem_Click(object sender, EventArgs e)
         {
             exitProgramNowOrNot();
+        }
+
+        private void calculateMinimumGross(decimal gp)
+        {
+            if (gp < minGrossPay)
+            {
+                minGrossPay = gp;
+            }
+        }
+
+        private void calculateMaximumGross(decimal gp)
+        {
+            if (gp > maxGrossPay)
+            {
+                maxGrossPay = gp;
+            }
+        }
+
+        private void calculateAverageGross()
+        {
+            MessageBox.Show("Show Stats totGrossPay = " + totGrossPay.ToString("c") +
+                            "totEmployees = " + totEmployees.ToString(),
+                            "STATS",
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Information);
+            avgGrossPay = totGrossPay / totEmployees;
         }
     }
 }

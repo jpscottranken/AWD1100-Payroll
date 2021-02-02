@@ -53,6 +53,12 @@ namespace PayrollCh03WindowsForms
             this.clearMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.clearAllMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.textBoxMinGrossPay = new System.Windows.Forms.TextBox();
+            this.labelMinGrossPay = new System.Windows.Forms.Label();
+            this.textBoxMaxGrossPay = new System.Windows.Forms.TextBox();
+            this.labelMaxGrossPay = new System.Windows.Forms.Label();
+            this.textBoxAvgGrossPay = new System.Windows.Forms.TextBox();
+            this.labelAvgGrossPay = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -200,7 +206,7 @@ namespace PayrollCh03WindowsForms
             // 
             this.textBoxTotalNumberOfEmployees.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.textBoxTotalNumberOfEmployees.Font = new System.Drawing.Font("Arial Narrow", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxTotalNumberOfEmployees.Location = new System.Drawing.Point(670, 182);
+            this.textBoxTotalNumberOfEmployees.Location = new System.Drawing.Point(670, 73);
             this.textBoxTotalNumberOfEmployees.Name = "textBoxTotalNumberOfEmployees";
             this.textBoxTotalNumberOfEmployees.ReadOnly = true;
             this.textBoxTotalNumberOfEmployees.Size = new System.Drawing.Size(214, 32);
@@ -210,7 +216,7 @@ namespace PayrollCh03WindowsForms
             // labelTotalNumberOfEmployees
             // 
             this.labelTotalNumberOfEmployees.Font = new System.Drawing.Font("Arial Narrow", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelTotalNumberOfEmployees.Location = new System.Drawing.Point(478, 183);
+            this.labelTotalNumberOfEmployees.Location = new System.Drawing.Point(478, 74);
             this.labelTotalNumberOfEmployees.Name = "labelTotalNumberOfEmployees";
             this.labelTotalNumberOfEmployees.Size = new System.Drawing.Size(175, 28);
             this.labelTotalNumberOfEmployees.TabIndex = 15;
@@ -231,7 +237,7 @@ namespace PayrollCh03WindowsForms
             // labelTotalGrossPay
             // 
             this.labelTotalGrossPay.Font = new System.Drawing.Font("Arial Narrow", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelTotalGrossPay.Location = new System.Drawing.Point(468, 303);
+            this.labelTotalGrossPay.Location = new System.Drawing.Point(478, 303);
             this.labelTotalGrossPay.Name = "labelTotalGrossPay";
             this.labelTotalGrossPay.Size = new System.Drawing.Size(175, 28);
             this.labelTotalGrossPay.TabIndex = 17;
@@ -291,6 +297,70 @@ namespace PayrollCh03WindowsForms
             this.exitMenuItem.Text = "Exit";
             this.exitMenuItem.Click += new System.EventHandler(this.exitMenuItem_Click);
             // 
+            // textBoxMinGrossPay
+            // 
+            this.textBoxMinGrossPay.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.textBoxMinGrossPay.Font = new System.Drawing.Font("Arial Narrow", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBoxMinGrossPay.Location = new System.Drawing.Point(670, 132);
+            this.textBoxMinGrossPay.Name = "textBoxMinGrossPay";
+            this.textBoxMinGrossPay.ReadOnly = true;
+            this.textBoxMinGrossPay.Size = new System.Drawing.Size(214, 32);
+            this.textBoxMinGrossPay.TabIndex = 20;
+            this.textBoxMinGrossPay.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // labelMinGrossPay
+            // 
+            this.labelMinGrossPay.AccessibleRole = System.Windows.Forms.AccessibleRole.None;
+            this.labelMinGrossPay.Font = new System.Drawing.Font("Arial Narrow", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelMinGrossPay.Location = new System.Drawing.Point(478, 133);
+            this.labelMinGrossPay.Name = "labelMinGrossPay";
+            this.labelMinGrossPay.Size = new System.Drawing.Size(175, 28);
+            this.labelMinGrossPay.TabIndex = 21;
+            this.labelMinGrossPay.Text = "Min Gross Pay:";
+            this.labelMinGrossPay.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // textBoxMaxGrossPay
+            // 
+            this.textBoxMaxGrossPay.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.textBoxMaxGrossPay.Font = new System.Drawing.Font("Arial Narrow", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBoxMaxGrossPay.Location = new System.Drawing.Point(670, 186);
+            this.textBoxMaxGrossPay.Name = "textBoxMaxGrossPay";
+            this.textBoxMaxGrossPay.ReadOnly = true;
+            this.textBoxMaxGrossPay.Size = new System.Drawing.Size(214, 32);
+            this.textBoxMaxGrossPay.TabIndex = 22;
+            this.textBoxMaxGrossPay.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // labelMaxGrossPay
+            // 
+            this.labelMaxGrossPay.Font = new System.Drawing.Font("Arial Narrow", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelMaxGrossPay.Location = new System.Drawing.Point(478, 187);
+            this.labelMaxGrossPay.Name = "labelMaxGrossPay";
+            this.labelMaxGrossPay.Size = new System.Drawing.Size(175, 28);
+            this.labelMaxGrossPay.TabIndex = 23;
+            this.labelMaxGrossPay.Text = "Max Gross Pay:";
+            this.labelMaxGrossPay.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // textBoxAvgGrossPay
+            // 
+            this.textBoxAvgGrossPay.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.textBoxAvgGrossPay.Font = new System.Drawing.Font("Arial Narrow", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBoxAvgGrossPay.Location = new System.Drawing.Point(670, 244);
+            this.textBoxAvgGrossPay.Name = "textBoxAvgGrossPay";
+            this.textBoxAvgGrossPay.ReadOnly = true;
+            this.textBoxAvgGrossPay.Size = new System.Drawing.Size(214, 32);
+            this.textBoxAvgGrossPay.TabIndex = 24;
+            this.textBoxAvgGrossPay.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // labelAvgGrossPay
+            // 
+            this.labelAvgGrossPay.Font = new System.Drawing.Font("Arial Narrow", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelAvgGrossPay.Location = new System.Drawing.Point(478, 245);
+            this.labelAvgGrossPay.Name = "labelAvgGrossPay";
+            this.labelAvgGrossPay.Size = new System.Drawing.Size(175, 28);
+            this.labelAvgGrossPay.TabIndex = 25;
+            this.labelAvgGrossPay.Text = "Avg Gross Pay:";
+            this.labelAvgGrossPay.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
             // FormPayrollChapter07
             // 
             this.AcceptButton = this.buttonCalculate;
@@ -299,6 +369,12 @@ namespace PayrollCh03WindowsForms
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.CancelButton = this.buttonClear;
             this.ClientSize = new System.Drawing.Size(922, 450);
+            this.Controls.Add(this.textBoxAvgGrossPay);
+            this.Controls.Add(this.labelAvgGrossPay);
+            this.Controls.Add(this.textBoxMaxGrossPay);
+            this.Controls.Add(this.labelMaxGrossPay);
+            this.Controls.Add(this.textBoxMinGrossPay);
+            this.Controls.Add(this.labelMinGrossPay);
             this.Controls.Add(this.buttonClearAll);
             this.Controls.Add(this.textBoxTotalGrossPay);
             this.Controls.Add(this.labelTotalGrossPay);
@@ -356,6 +432,12 @@ namespace PayrollCh03WindowsForms
         private System.Windows.Forms.ToolStripMenuItem clearMenuItem;
         private System.Windows.Forms.ToolStripMenuItem clearAllMenuItem;
         private System.Windows.Forms.ToolStripMenuItem exitMenuItem;
+        private System.Windows.Forms.TextBox textBoxMinGrossPay;
+        private System.Windows.Forms.Label labelMinGrossPay;
+        private System.Windows.Forms.TextBox textBoxMaxGrossPay;
+        private System.Windows.Forms.Label labelMaxGrossPay;
+        private System.Windows.Forms.TextBox textBoxAvgGrossPay;
+        private System.Windows.Forms.Label labelAvgGrossPay;
     }
 }
 
